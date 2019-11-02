@@ -1,15 +1,17 @@
 package com.example.buhat.vulkan;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.buhat.BD.Event;
 import com.example.buhat.R;
 
@@ -58,12 +60,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     final static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final ImageView imageView;
         private final TextView textViewName;
         private final TextView textViewMesto;
         private final TextView textViewCountLudey;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewMesto = itemView.findViewById(R.id.textViewMesto);
             textViewCountLudey = itemView.findViewById(R.id.textViewCountLudey);
@@ -71,6 +75,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         @SuppressLint("SetTextI18n")
         private void bind(@NonNull Event event) {
+
+            String s = event.getImageUrl();
+            Glide
+                    .with(imageView.getContext())
+                    .load(event.getImageUrl())
+                    .apply(new RequestOptions()
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.ic_broken_image))
+                    .into(imageView);
             textViewName.setText(event.getEventName());
             textViewCountLudey.setText(Integer.toString(event.getCountPeople()));
             textViewMesto.setText(event.getAddress());

@@ -9,5 +9,14 @@
         android:id="@+id/listVulkanovFragment"
         android:name="com.example.buhat.vulkan.ListVulkanovFragment"
         android:label="fragment_list_vulkanov"
-        tools:layout="@layout/fragment_list_vulkanov" />
+        tools:layout="@layout/fragment_list_vulkanov" >
+        <action
+            android:id="@+id/action_listVulkanovFragment_to_detailVulkanFragment"
+            app:destination="@id/detailVulkanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailVulkanFragment"
+        android:name="com.example.buhat.detailVulkan.DetailVulkanFragment"
+        android:label="fragment_detail_vulkan"
+        tools:layout="@layout/fragment_detail_vulkan" />
 </navigation>
