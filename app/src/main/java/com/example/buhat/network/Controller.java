@@ -32,7 +32,7 @@ import timber.log.Timber;
 //
 //        VulkanApiService gerritAPI = retrofit.create(VulkanApiService.class);
 //
-//        call = gerritAPI.loadChanges();
+//        call = gerritAPI.getListEvents();
 //        Timber.i(" Call<List<Event>> ");
 //
 //    }

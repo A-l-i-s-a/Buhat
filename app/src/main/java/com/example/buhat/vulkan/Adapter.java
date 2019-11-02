@@ -75,8 +75,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         @SuppressLint("SetTextI18n")
         private void bind(@NonNull Event event) {
-
-            String s = event.getImageUrl();
             Glide
                     .with(imageView.getContext())
                     .load(event.getImageUrl())
