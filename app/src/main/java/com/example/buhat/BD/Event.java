@@ -1,14 +1,34 @@
 package com.example.buhat.BD;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Event {
 
+
+    @SerializedName("id")
+    @Expose
     private long id;
+    @SerializedName("name")
+    @Expose
     private String EventName;//название
+
     private Bar bar;//ссылка на бар
+    @SerializedName("address")
+    @Expose
     private String address;//адрес бара
+
     private int countPeople;// кол-во участников
+    @SerializedName("description")
+    @Expose
     private String description;// описание
+
     private User eventCreator; //создатель эвента
+
+    @SerializedName("imageUrl")
+    @Expose
+    private String imageUrl;
+
     private static long countEvent = 1;
 
     public Event(long id, String eventName, Bar bar, String address, int countPeople, String description, User eventCreator) {
@@ -88,5 +108,13 @@ public class Event {
 
     public void setEventCreator(User eventCreator) {
         this.eventCreator = eventCreator;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

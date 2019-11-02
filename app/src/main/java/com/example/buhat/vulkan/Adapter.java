@@ -1,6 +1,7 @@
 package com.example.buhat.vulkan;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,21 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appforran.database.Running;
+import com.example.buhat.BD.Event;
 import com.example.buhat.R;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-
-import timber.log.Timber;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    private  List<Running> runnings;
+    private List<Event> events;
     private final ViewHolder.Listener onClickListener;
 
-    public Adapter(List<Running> runnings, ViewHolder.Listener onClickListener) {
-        this.runnings = runnings;
+    public Adapter(List<Event> events, ViewHolder.Listener onClickListener) {
+        this.events = events;
         this.onClickListener = onClickListener;
     }
 
@@ -34,7 +32,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickListener.onMovieClick((Running) view.getTag());
+                onClickListener.onMovieClick((Event) view.getTag());
             }
         });
         return new ViewHolder(view);
@@ -42,19 +40,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Running running = runnings.get(position);
-        holder.bind(running);
-        holder.itemView.setTag(running);
+        Event event = events.get(position);
+        holder.bind(event);
+        holder.itemView.setTag(event);
     }
 
     @Override
     public int getItemCount() {
-        return runnings.size();
+        return events.size();
     }
 
 
-    void setRunnings(List<Running> runnings) {
-        this.runnings = runnings;
+    void setEvents(List<Event> events) {
+        this.events = events;
         notifyDataSetChanged();
     }
 
@@ -72,19 +70,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
         @SuppressLint("SetTextI18n")
-        private void bind(@NonNull Running running) {
-            Timber.d("running.id = %s", running.id);
-            textViewName.setText(Integer.toString(running.id));
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatForDateNow = new SimpleDateFormat("hh:mm:ss");
-            Long t = running.time;
-            if (t != null) {
-                textViewCountLudey.setText(formatForDateNow.format(t));
-            }
-            textViewMesto.setText(running.date.toString());
+        private void bind(@NonNull Event event) {
+            textViewName.setText(event.getEventName());
+            textViewCountLudey.setText(Integer.toString(event.getCountPeople()));
+            textViewMesto.setText(event.getAddress());
+
         }
 
         interface Listener {
-            void onMovieClick(Running chat);
+            void onMovieClick(Event chat);
         }
 
     }
