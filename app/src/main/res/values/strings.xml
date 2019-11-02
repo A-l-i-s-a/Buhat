@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Buhat</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_bar">Name</string>
+    <string name="adress_bar">Adress</string>
+    <string name="count_piple_in_bar">Count</string>
+</resources>
