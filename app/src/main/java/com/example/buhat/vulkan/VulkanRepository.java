@@ -1,11 +1,9 @@
 package com.example.buhat.vulkan;
 
-import android.speech.RecognitionService;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.buhat.BD.Event;
+import com.example.buhat.BD.User;
 import com.example.buhat.network.App;
 import com.example.buhat.network.VulkanApiService;
 
@@ -21,7 +19,7 @@ import timber.log.Timber;
 public class VulkanRepository {
     private static VulkanRepository vulkanRepository;
 
-    public static VulkanRepository getInstance(){
+    public static VulkanRepository getInstance() {
         if (vulkanRepository == null) {
             vulkanRepository = new VulkanRepository();
         }
@@ -53,5 +51,25 @@ public class VulkanRepository {
             }
         });
         return newEvents;
+    }
+
+    public MutableLiveData<User> getUser(String login) {
+        MutableLiveData<User> newUser = new MutableLiveData<>();
+        apiService.getUser(login).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NotNull Call<User> call, @NotNull Response<User> response) {
+                if (response.isSuccessful()) {
+                    newUser.setValue(response.body());
+                    Timber.i(" onResponse = %s", response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                newUser.setValue(null);
+                Timber.i(t);
+            }
+        });
+        return newUser;
     }
 }

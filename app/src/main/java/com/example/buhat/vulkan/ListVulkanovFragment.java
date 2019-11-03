@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -15,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buhat.BD.Event;
 import com.example.buhat.R;
-import com.example.buhat.detailVulkan.DetailVulkanFragment;
-import com.example.buhat.detailVulkan.DetailVulkanViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +28,8 @@ public class ListVulkanovFragment extends Fragment {
     Adapter adapter;
     View view;
     RecyclerView recyclerView;
+    Bundle bundle;
+    Event newEvent = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,14 +40,17 @@ public class ListVulkanovFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewVulkanov);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new Adapter(events, new Adapter.ViewHolder.Listener() {
-            @Override
-            public void onMovieClick(Event chat) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("event", chat);
-                System.out.println(chat.getImageUrl());
-                Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_detailVulkanFragment, bundle);
-            }
+        bundle = getArguments();
+        if (bundle == null) {
+            bundle = new Bundle();
+        } else {
+            newEvent = bundle.getParcelable("newevent");
+        }
+
+        adapter = new Adapter(events, chat -> {
+            bundle.putParcelable("event", chat);
+            System.out.println(chat.getImageUrl());
+            Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_detailVulkanFragment, bundle);
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -60,13 +61,15 @@ public class ListVulkanovFragment extends Fragment {
         setupRecyclerView();
 
         FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_addFragment);
-            }
-        });
+        fab.setOnClickListener(view -> {
+                bundle.putParcelable("event", events.get(0));
+                Navigation.findNavController(view)
+                        .navigate(R.id.action_listVulkanovFragment_to_addFragment, bundle);});
 
+        if (newEvent != null) {
+            events.add(newEvent);
+            adapter.notifyDataSetChanged();
+        }
         return view;
     }
 

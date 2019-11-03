@@ -5,11 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
+    @SerializedName("id")
+    @Expose
     private long id;
+    @SerializedName("login")
+    @Expose
     private String login;
-
+    @SerializedName("password")
+    @Expose
     private String password;
-
+    @SerializedName("rate")
+    @Expose
     private double rate;
     private static long countUser = 1;
 
@@ -59,5 +65,15 @@ public class User {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", rate=" + rate +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.example.buhat.vulkan;
+package com.example.buhat.loginAndRegestration;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,25 +6,28 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.buhat.BD.Event;
 import com.example.buhat.BD.User;
+import com.example.buhat.vulkan.VulkanRepository;
 
 import java.util.List;
 
-public class ViewModelVulkan extends ViewModel {
+public class LoginViewModel extends ViewModel {
 
-    private MutableLiveData<List<Event>> mutableLiveData;
+    private MutableLiveData<User> mutableLiveData;
     private VulkanRepository vulkanRepository;
 
-    public void init() {
+    public void init(String login) {
         if (mutableLiveData != null) {
             return;
         }
         vulkanRepository = VulkanRepository.getInstance();
-        mutableLiveData = vulkanRepository.getListEvents();
+        mutableLiveData = vulkanRepository.getUser(login);
     }
 
-    public LiveData<List<Event>> getMutableLiveData() {
+    public LiveData<User> getMutableLiveData() {
         return mutableLiveData;
     }
 
-
+    public VulkanRepository getVulkanRepository() {
+        return vulkanRepository;
+    }
 }
