@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".detailVulkan.DetailVulkanFragment">
+    tools:context=".detailVulkan.DetailVulkanFragment"
+    android:id="@+id/detail_vulkan_fragment">
 
 
     <TextView
@@ -22,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewLink"
+        android:id="@+id/textViewCountPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="web"
@@ -39,8 +40,8 @@
         android:hint="@string/author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewLink"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLink" />
+        app:layout_constraintStart_toStartOf="@+id/textViewCountPeople"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCountPeople" />
 
     <TextView
         android:id="@+id/textViewDescripticon"
@@ -54,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textViewPrice"
+        android:id="@+id/textViewAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/price"
@@ -67,10 +68,26 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameDetail"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_bias="0.006" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescripticon"
+        app:layout_constraintVertical_bias="0.022" />
 </androidx.constraintlayout.widget.ConstraintLayout>

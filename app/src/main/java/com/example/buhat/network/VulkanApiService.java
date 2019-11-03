@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 
 public interface VulkanApiService {
-    @GET("bars/")
+    @GET("events/")
     Call<List<Event>> getListEvents();
 
 }

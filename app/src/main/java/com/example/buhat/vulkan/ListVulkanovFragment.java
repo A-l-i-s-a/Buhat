@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buhat.BD.Event;
 import com.example.buhat.R;
+import com.example.buhat.detailVulkan.DetailVulkanFragment;
+import com.example.buhat.detailVulkan.DetailVulkanViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,10 @@ public class ListVulkanovFragment extends Fragment {
         adapter = new Adapter(events, new Adapter.ViewHolder.Listener() {
             @Override
             public void onMovieClick(Event chat) {
-                Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_detailVulkanFragment);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("event", chat);
+                System.out.println(chat.getImageUrl());
+                Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_detailVulkanFragment, bundle);
             }
         });
         recyclerView.setAdapter(adapter);

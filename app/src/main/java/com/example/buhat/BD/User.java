@@ -1,9 +1,15 @@
 package com.example.buhat.BD;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+
     private long id;
     private String login;
+
     private String password;
+
     private double rate;
     private static long countUser = 1;
 

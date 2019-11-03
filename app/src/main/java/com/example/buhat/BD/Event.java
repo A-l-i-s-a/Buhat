@@ -1,9 +1,12 @@
 package com.example.buhat.BD;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Event {
+public class Event implements Parcelable{
 
 
     @SerializedName("id")
@@ -22,7 +25,8 @@ public class Event {
     @SerializedName("description")
     @Expose
     private String description;// описание
-
+    @SerializedName("creator")
+    @Expose
     private User eventCreator; //создатель эвента
 
     @SerializedName("imageUrl")
@@ -53,6 +57,17 @@ public class Event {
         countEvent++;
     }
 
+    public Event() {
+    }
+
+    protected Event(Parcel in) {
+        id = in.readLong();
+        EventName = in.readString();
+        address = in.readString();
+        countPeople = in.readInt();
+        description = in.readString();
+        imageUrl = in.readString();
+    }
 
     public long getId() {
         return id;
@@ -116,5 +131,46 @@ public class Event {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(EventName);
+        parcel.writeString(address);
+        parcel.writeInt(countPeople);
+        parcel.writeString(description);
+        parcel.writeString(imageUrl);
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", EventName='" + EventName + '\'' +
+                ", bar=" + bar +
+                ", address='" + address + '\'' +
+                ", countPeople=" + countPeople +
+                ", description='" + description + '\'' +
+                ", eventCreator=" + eventCreator +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }
