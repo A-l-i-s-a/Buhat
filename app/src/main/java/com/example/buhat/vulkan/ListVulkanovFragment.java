@@ -17,6 +17,8 @@ import com.example.buhat.BD.Event;
 import com.example.buhat.R;
 import com.example.buhat.detailVulkan.DetailVulkanFragment;
 import com.example.buhat.detailVulkan.DetailVulkanViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,14 @@ public class ListVulkanovFragment extends Fragment {
         viewModelVulkan.init();
 
         setupRecyclerView();
+
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_addFragment);
+            }
+        });
 
         return view;
     }

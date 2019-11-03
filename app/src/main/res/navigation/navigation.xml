@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/listVulkanovFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/listVulkanovFragment"
@@ -13,10 +13,42 @@
         <action
             android:id="@+id/action_listVulkanovFragment_to_detailVulkanFragment"
             app:destination="@id/detailVulkanFragment" />
+        <action
+            android:id="@+id/action_listVulkanovFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailVulkanFragment"
         android:name="com.example.buhat.detailVulkan.DetailVulkanFragment"
         android:label="fragment_detail_vulkan"
         tools:layout="@layout/fragment_detail_vulkan" />
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.buhat.addVulkan.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.buhat.loginAndRegestration.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment2"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_listVulkanovFragment"
+            app:destination="@id/listVulkanovFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.buhat.loginAndRegestration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_listVulkanovFragment"
+            app:destination="@id/listVulkanovFragment" />
+    </fragment>
 </navigation>
