@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buhat.BD.Event;
 import com.example.buhat.R;
 
 import java.util.ArrayList;
@@ -46,9 +47,21 @@ public class ChatFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        Event event = new Event();
+
+        Bundle bundle = getArguments();
+        event = new Event();
+        System.out.println(bundle);
+        if (bundle != null) {
+            event = bundle.getParcelable("event");
+            System.out.println(event);
+        }
+
+
+        Event finalEvent = event;
         view.findViewById(R.id.buttonSend).setOnClickListener(view1 -> {
             EditText editText = view.findViewById(R.id.editText);
-            msgs.add(new Msg("U1", editText.getText().toString(), Calendar.getInstance()));
+            msgs.add(new Msg(finalEvent.getEventCreator().getLogin(), editText.getText().toString(), Calendar.getInstance()));
             msgAdapter.notifyDataSetChanged();
             recyclerView.scrollToPosition(msgAdapter.getItemCount() - 1);
             editText.setText("");

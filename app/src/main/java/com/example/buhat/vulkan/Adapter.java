@@ -78,6 +78,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             Glide
                     .with(imageView.getContext())
                     .load(event.getBar().getImageUrl())
+                    .circleCrop()
                     .apply(new RequestOptions()
                             .placeholder(R.drawable.loading_animation)
                             .error(R.drawable.ic_broken_image))

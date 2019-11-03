@@ -35,7 +35,6 @@ public class DetailVulkanFragment extends Fragment {
         System.out.println(bundle);
         if (bundle != null) {
             event = bundle.getParcelable("event");
-            System.out.println(event);
         }
 
 
@@ -43,6 +42,7 @@ public class DetailVulkanFragment extends Fragment {
         Glide
                 .with(imageView.getContext())
                 .load(event.getBar().getImageUrl())
+                .circleCrop()
                 .apply(new RequestOptions()
                         .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_broken_image))
@@ -69,10 +69,11 @@ public class DetailVulkanFragment extends Fragment {
             textViewCountPeople.setText(Integer.toString(event.getCountPeople()));
         });
 
+
         view.findViewById(R.id.buttonChat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_detailVulkanFragment_to_chatFragment);
+                Navigation.findNavController(view).navigate(R.id.action_detailVulkanFragment_to_chatFragment, bundle);
             }
         });
 
