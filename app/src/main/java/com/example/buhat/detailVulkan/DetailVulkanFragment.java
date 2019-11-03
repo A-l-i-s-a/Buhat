@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -62,12 +63,16 @@ public class DetailVulkanFragment extends Fragment {
         textViewAddress.setText(event.getAddress());
 
 
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button).setOnClickListener(view1 -> {
+            int count = event.getCountPeople();
+            event.setCountPeople(count + 1);
+            textViewCountPeople.setText(Integer.toString(event.getCountPeople()));
+        });
+
+        view.findViewById(R.id.buttonChat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int count = event.getCountPeople();
-                event.setCountPeople(count + 1);
-                textViewCountPeople.setText(Integer.toString(event.getCountPeople()));
+                Navigation.findNavController(view).navigate(R.id.action_detailVulkanFragment_to_chatFragment);
             }
         });
 
