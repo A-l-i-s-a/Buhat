@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,14 @@ public class ChatFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+
+        view.findViewById(R.id.buttonSend).setOnClickListener(view1 -> {
+            EditText editText = view.findViewById(R.id.editText);
+            msgs.add(new Msg("U1", editText.getText().toString(), Calendar.getInstance()));
+            msgAdapter.notifyDataSetChanged();
+            recyclerView.scrollToPosition(msgAdapter.getItemCount() - 1);
+            editText.setText("");
+        });
 
         return view;
     }
