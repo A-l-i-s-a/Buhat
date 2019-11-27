@@ -13,5 +13,6 @@ Hackathon 02.11.2019
                 .build();
 ```
 ### Скриншоты
+![](https://github.com/A-l-i-s-a/pastafarianismAndroidApp/blob/master/imag.png)
 
 
