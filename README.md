@@ -5,6 +5,7 @@ Hackathon 02.11.2019
 Прототип приложения для распределения пивных вулканов по пастафарианам.
 ### Установка
 Для работы приложения требуется склонировать и запустить [проект](https://github.com/Seri4/pastafarianismRestServer).
+
 В файле network\App.java поменять ip на свой.
 ```java
  private static Retrofit retrofit = new Retrofit.Builder()
