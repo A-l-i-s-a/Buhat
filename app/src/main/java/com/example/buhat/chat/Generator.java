@@ -2,6 +2,9 @@ package com.example.buhat.chat;
 
 import android.graphics.Color;
 
+import com.example.buhat.BD.Chat;
+import com.example.buhat.BD.Msg;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;

@@ -11,8 +11,8 @@ public class App {
             .build();
 
 
-    public static VulkanApiService getApi() {
-        return retrofit.create(VulkanApiService.class);
+    public static ApiService getApi() {
+        return retrofit.create(ApiService.class);
     }
 
 }

@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buhat.BD.Event;
 import com.example.buhat.R;
+import com.example.buhat.BD.Msg;
+import com.example.buhat.chat.msg.MsgAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;

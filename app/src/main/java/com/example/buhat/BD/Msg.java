@@ -1,10 +1,22 @@
-package com.example.buhat.chat;
+package com.example.buhat.BD;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
 
 public class Msg {
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("msg")
+    @Expose
     private String msg;
+    @SerializedName("date")
+    @Expose
     private Calendar date;
 
     public Msg(String name, String msg, Calendar date) {

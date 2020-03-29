@@ -23,13 +23,13 @@ import timber.log.Timber;
 
 public class ListVulkanovFragment extends Fragment {
 
-    List<Event> events = new ArrayList<>();
-    ViewModelVulkan viewModelVulkan;
-    Adapter adapter;
-    View view;
-    RecyclerView recyclerView;
-    Bundle bundle;
-    Event newEvent = null;
+    private View view;
+    private RecyclerView recyclerView;
+    private Bundle bundle;
+    private Event newEvent = null;
+    private List<Event> events = new ArrayList<>();
+    private ViewModelVulkan viewModelVulkan;
+    private Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,9 +62,10 @@ public class ListVulkanovFragment extends Fragment {
 
         FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                bundle.putParcelable("event", events.get(0));
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_listVulkanovFragment_to_addFragment, bundle);});
+            bundle.putParcelable("event", events.get(0));
+            Navigation.findNavController(view)
+                    .navigate(R.id.action_listVulkanovFragment_to_addFragment, bundle);
+        });
 
         if (newEvent != null) {
             events.add(newEvent);

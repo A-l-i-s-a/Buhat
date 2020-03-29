@@ -1,4 +1,4 @@
-package com.example.buhat.chat;
+package com.example.buhat.chat.msg;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buhat.BD.Msg;
 import com.example.buhat.R;
 
 import java.text.SimpleDateFormat;

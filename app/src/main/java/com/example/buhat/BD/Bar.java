@@ -90,13 +90,6 @@ public class Bar {
 
     @Override
     public String toString() {
-        return "Bar{" +
-                "id=" + id +
-                ", barName='" + barName + '\'' +
-                ", barDescription='" + barDescription + '\'' +
-                ", address='" + address + '\'' +
-                ", averageСheck=" + averageСheck +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+        return barName;
     }
 }

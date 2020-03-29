@@ -30,6 +30,8 @@ public class Event implements Parcelable{
     @Expose
     private User eventCreator; //создатель эвента
 
+    private Chat chat;
+
 //    @SerializedName("imageUrl")
 //    @Expose
 //    private String imageUrl;

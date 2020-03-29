@@ -9,36 +9,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.example.buhat.BD.Bar;
 import com.example.buhat.BD.Event;
 import com.example.buhat.BD.User;
 import com.example.buhat.R;
-import com.example.buhat.network.App;
-import com.example.buhat.network.VulkanApiService;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
 
 public class AddFragment extends Fragment {
 
-    private VulkanApiService apiService = App.getApi();
+    private AddVulkanViewModel addVulkanViewModel;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,41 +40,27 @@ public class AddFragment extends Fragment {
         EditText editTextNewAddress = view.findViewById(R.id.editTextNewAddress);
         EditText editTextDescription = view.findViewById(R.id.editTextDescription);
         EditText editTextAverageCheck = view.findViewById(R.id.editTextAverageCheck);
+        Spinner spinner = view.findViewById(R.id.spinner);
 
-        final Bar[] bar = {null};
+        addVulkanViewModel = ViewModelProviders.of(this).get(AddVulkanViewModel.class);
+        addVulkanViewModel.init();
 
-        apiService.getListBar().enqueue(new Callback<List<Bar>>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onResponse(@NotNull Call<List<Bar>> call, @NotNull Response<List<Bar>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-
-                    List<String> barList = new ArrayList<>();
-                    response.body().forEach(bar -> barList.add(bar.getBarName()));
-                    Spinner spinner = view.findViewById(R.id.spinner);
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item, barList);
-                    spinner.setSelected(true);
-                    spinner.setAdapter(adapter);
-                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            Timber.i("IdItem" + String.valueOf(i));
-                            bar[0] = response.body().get(i);
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-                        }
-                    });
+        addVulkanViewModel.getMutableLiveData().observe(this, bars -> {
+            ArrayAdapter<Bar> adapter = new ArrayAdapter<Bar>(Objects.requireNonNull(getContext()),
+                    android.R.layout.simple_spinner_item, bars);
+            spinner.setSelected(true);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    Timber.i("IdItem%s", String.valueOf(i));
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<Bar>> call, Throwable t) {
-
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    Timber.i("onNothingSelected");
+                }
+            });
         });
 
         view.findViewById(R.id.buttonAdd).setOnClickListener(view1 -> {
@@ -100,24 +77,7 @@ public class AddFragment extends Fragment {
             // Bar(String barName, String barDescription, String address, int averageСheck, String imageUrl)
             // Event(String eventName, Bar bar, String address, int countPeople, String description, User eventCreator)
 
-            Event newEvent = new Event(name, bar[0], address, 0, description, user);
-            Timber.i(bar[0].getBarName());
-
-            apiService.postData(newEvent).enqueue(new Callback<Event>() {
-                @Override
-                public void onResponse(Call<Event> call, Response<Event> response) {
-                    if (response.isSuccessful()) {
-                        Timber.i("response %s", response.body().getEventName());
-                    } else {
-                        Timber.i("response code %s", response.code());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Event> call, Throwable t) {
-                    Timber.i(t);
-                }
-            });
+            Event newEvent = new Event(name, (Bar) spinner.getSelectedItem(), address, 0, description, user);
 
             bundle.putParcelable("newevent", newEvent);
             Navigation.findNavController(view1).

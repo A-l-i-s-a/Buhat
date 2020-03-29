@@ -4,30 +4,27 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.buhat.BD.Event;
 import com.example.buhat.BD.User;
-import com.example.buhat.vulkan.VulkanRepository;
-
-import java.util.List;
+import com.example.buhat.network.Repository;
 
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<User> mutableLiveData;
-    private VulkanRepository vulkanRepository;
+    private Repository repository;
 
     public void init(String login) {
         if (mutableLiveData != null) {
             return;
         }
-        vulkanRepository = VulkanRepository.getInstance();
-        mutableLiveData = vulkanRepository.getUser(login);
+        repository = Repository.getInstance();
+        mutableLiveData = repository.getUser(login);
     }
 
     public LiveData<User> getMutableLiveData() {
         return mutableLiveData;
     }
 
-    public VulkanRepository getVulkanRepository() {
-        return vulkanRepository;
+    public Repository getRepository() {
+        return repository;
     }
 }

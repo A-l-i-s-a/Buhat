@@ -1,13 +1,30 @@
-package com.example.buhat.chat;
+package com.example.buhat.BD;
+
+import com.example.buhat.BD.Msg;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
 import java.util.List;
 
 public class Chat {
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("color")
+    @Expose
     private int color;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("lastMsg")
+    @Expose
     private String lastMsg;
+    @SerializedName("lastDate")
+    @Expose
     private Calendar lastDate;
+    @SerializedName("count")
+    @Expose
     private int count;
     private List<Msg> msgs;
 

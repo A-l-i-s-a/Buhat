@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
-public interface VulkanApiService {
+public interface ApiService {
     @GET("events/")
     Call<List<Event>> getListEvents();
 
