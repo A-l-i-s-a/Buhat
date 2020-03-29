@@ -36,21 +36,19 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:ems="10"
-        android:hint="URL"
-        android:inputType="textPersonName" />
-
-    <EditText
         android:id="@+id/editTextAverageCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:ems="10"
+        android:hint="Average price"
         android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" />
 
     <Button
         android:id="@+id/buttonAdd"

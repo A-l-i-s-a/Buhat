@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Event implements Parcelable{
 
-
     @SerializedName("id")
     @Expose
     private long id;
@@ -31,11 +30,11 @@ public class Event implements Parcelable{
     @Expose
     private User eventCreator; //создатель эвента
 
-    @SerializedName("imageUrl")
-    @Expose
-    private String imageUrl;
+//    @SerializedName("imageUrl")
+//    @Expose
+//    private String imageUrl;
 
-    private static long countEvent = 1;
+    private static long countEvent = 2;
 
     public Event(long id, String eventName, Bar bar, String address, int countPeople, String description, User eventCreator) {
         this.id = id;
@@ -45,21 +44,26 @@ public class Event implements Parcelable{
         this.countPeople = countPeople;
         this.description = description;
         this.eventCreator = eventCreator;
-        countEvent++;
     }
 
     public Event(String eventName, Bar bar, String address, int countPeople, String description, User eventCreator) {
-        this.id = countEvent;
         EventName = eventName;
         this.bar = bar;
         this.address = address;
         this.countPeople = countPeople;
         this.description = description;
         this.eventCreator = eventCreator;
-        countEvent++;
     }
 
     public Event() {
+    }
+
+    public Event(String eventName, String address, int countPeople, String description, User eventCreator) {
+        EventName = eventName;
+        this.address = address;
+        this.countPeople = countPeople;
+        this.description = description;
+        this.eventCreator = eventCreator;
     }
 
     protected Event(Parcel in) {
@@ -68,7 +72,7 @@ public class Event implements Parcelable{
         address = in.readString();
         countPeople = in.readInt();
         description = in.readString();
-        imageUrl = in.readString();
+//        imageUrl = in.readString();
     }
 
     public long getId() {
@@ -127,13 +131,13 @@ public class Event implements Parcelable{
         this.eventCreator = eventCreator;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
+//
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
 
     @Override
     public int describeContents() {
@@ -147,7 +151,7 @@ public class Event implements Parcelable{
         parcel.writeString(address);
         parcel.writeInt(countPeople);
         parcel.writeString(description);
-        parcel.writeString(imageUrl);
+//        parcel.writeString(imageUrl);
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -172,7 +176,7 @@ public class Event implements Parcelable{
                 ", countPeople=" + countPeople +
                 ", description='" + description + '\'' +
                 ", eventCreator=" + eventCreator +
-                ", imageUrl='" + imageUrl + '\'' +
+//                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

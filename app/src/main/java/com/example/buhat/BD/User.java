@@ -17,22 +17,18 @@ public class User {
     @SerializedName("rate")
     @Expose
     private double rate;
-    private static long countUser = 1;
 
     public User(long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.rate = 0;
-        countUser++;
     }
 
     public User(String login, String password) {
-        this.id = countUser;
         this.login = login;
         this.password = password;
         this.rate = 0;
-        countUser++;
     }
 
     public long getId() {

@@ -49,7 +49,7 @@ public class ListVulkanovFragment extends Fragment {
 
         adapter = new Adapter(events, chat -> {
             bundle.putParcelable("event", chat);
-            System.out.println(chat.getImageUrl());
+//            System.out.println(chat.getImageUrl());
             Navigation.findNavController(view).navigate(R.id.action_listVulkanovFragment_to_detailVulkanFragment, bundle);
         });
         recyclerView.setAdapter(adapter);

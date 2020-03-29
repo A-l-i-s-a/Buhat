@@ -1,13 +1,27 @@
 package com.example.buhat.BD;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Bar {
-    private long id;
+    @SerializedName("id")
+    @Expose
+    private Long id;
+    @SerializedName("name")
+    @Expose
     private String barName;
+    @SerializedName("description")
+    @Expose
     private String barDescription;
+    @SerializedName("address")
+    @Expose
     private String address;
+    @SerializedName("averageСheck")
+    @Expose
     private int averageСheck;
+    @SerializedName("imageUrl")
+    @Expose
     private String imageUrl;
-    private static long countBar = 1;
 
     public Bar(long id, String barName, String barDescription, String address, int averageСheck, String imageUrl) {
         this.id = id;
@@ -16,17 +30,14 @@ public class Bar {
         this.address = address;
         this.averageСheck = averageСheck;
         this.imageUrl = imageUrl;
-        countBar++;
     }
 
     public Bar(String barName, String barDescription, String address, int averageСheck, String imageUrl) {
-        this.id =countBar;
         this.barName = barName;
         this.barDescription = barDescription;
         this.address = address;
         this.averageСheck = averageСheck;
         this.imageUrl = imageUrl;
-        countBar++;
     }
 
     public String getImageUrl() {
@@ -35,14 +46,6 @@ public class Bar {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public static long getCountBar() {
-        return countBar;
-    }
-
-    public static void setCountBar(long countBar) {
-        Bar.countBar = countBar;
     }
 
     public int getAverageСheck() {
@@ -83,5 +86,17 @@ public class Bar {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Bar{" +
+                "id=" + id +
+                ", barName='" + barName + '\'' +
+                ", barDescription='" + barDescription + '\'' +
+                ", address='" + address + '\'' +
+                ", averageСheck=" + averageСheck +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }
