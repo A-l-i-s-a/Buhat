@@ -79,6 +79,8 @@ public class AddFragment extends Fragment {
 
             Event newEvent = new Event(name, (Bar) spinner.getSelectedItem(), address, 0, description, user);
 
+            addVulkanViewModel.postEvent(newEvent);
+
             bundle.putParcelable("newevent", newEvent);
             Navigation.findNavController(view1).
                     navigate(R.id.action_addFragment_to_listVulkanovFragment, bundle);
