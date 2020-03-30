@@ -6,19 +6,19 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.buhat.BD.Bar;
 import com.example.buhat.BD.Event;
-import com.example.buhat.network.Repository;
+import com.example.buhat.network.DataRepository;
 
 import java.util.List;
 
 public class AddVulkanViewModel extends ViewModel {
     private MutableLiveData<List<Bar>> mutableLiveData;
-    private Repository repository;
+    private DataRepository dataRepository;
     public void init() {
         if (mutableLiveData != null) {
             return;
         }
-        repository = Repository.getInstance();
-        mutableLiveData = repository.getListBar();
+        dataRepository = DataRepository.getInstance();
+        mutableLiveData = dataRepository.getListBar();
     }
 
     public LiveData<List<Bar>> getMutableLiveData() {
@@ -26,6 +26,6 @@ public class AddVulkanViewModel extends ViewModel {
     }
 
     public void postEvent(Event event) {
-        repository.postEvent(event);
+        dataRepository.postEvent(event);
     }
 }

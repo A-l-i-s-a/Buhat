@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.buhat.BD.Event;
-import com.example.buhat.network.Repository;
+import com.example.buhat.network.DataRepository;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ public class ViewModelVulkan extends ViewModel {
         if (mutableLiveData != null) {
             return;
         }
-        Repository repository = Repository.getInstance();
-        mutableLiveData = repository.getListEvents();
+        DataRepository dataRepository = DataRepository.getInstance();
+        mutableLiveData = dataRepository.getListEvents();
 
     }
 
